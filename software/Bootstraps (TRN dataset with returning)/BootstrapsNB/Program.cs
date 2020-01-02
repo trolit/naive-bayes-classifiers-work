@@ -330,7 +330,7 @@ namespace BootstrapsNB
                                 // porównujemy
                                 if (wynik_param0 > wynik_param1)
                                 {
-                                    Console.Write("TEST NR: " + (g + 1) + " Obiekt x" + (i + 1) + " dostaje decyzję 0");
+                                    Console.Write("TEST NR: " + (g + 1) + " Object x" + (i + 1) + " gets decision 0");
 
                                     decyzjeKlasyfikatora.Add(0);
 
@@ -343,14 +343,14 @@ namespace BootstrapsNB
                                     if (wczytany_Testowy[i][indexDecyzji] == klasa0)
                                     {
                                         Console.Write(
-                                            " i jest zgodna z ukrytą decyzją eksperta(obiekt poprawnie sklasyfikowany)");
+                                            " which is correct by TST expert data(object correctly classified)");
 
                                         liczbaObiektowPoprawnieSklasyfikowanych_klasa0++;
                                     }
                                     else if (wczytany_Testowy[i][indexDecyzji] == klasa1)
                                     {
                                         Console.Write(
-                                            " i nie jest zgodna z ukrytą decyzją eksperta(obiekt błędnie sklasyfikowany)");
+                                            " which is incorrect by TST expert data(object not classified correctly)");
 
                                         liczbaObiektowBlednieSklasyfikowanych_klasa0++;
                                         Console.WriteLine("\n Te" + liczbaObiektowBlednieSklasyfikowanych_klasa0);
@@ -360,7 +360,7 @@ namespace BootstrapsNB
                                 }
                                 else if (wynik_param1 > wynik_param0)
                                 {
-                                    Console.Write("TEST NR: " + (g + 1) + " Obiekt x" + (i + 1) + " dostaje decyzję 1");
+                                    Console.Write("TEST NR: " + (g + 1) + " Object x" + (i + 1) + " gets decision 1");
 
                                     decyzjeKlasyfikatora.Add(1);
 
@@ -373,14 +373,14 @@ namespace BootstrapsNB
                                     if (wczytany_Testowy[i][indexDecyzji] == klasa1)
                                     {
                                         Console.Write(
-                                            " i jest zgodna z ukrytą decyzją eksperta(obiekt poprawnie sklasyfikowany)");
+                                            " which is correct by TST expert data(object correctly classified)");
 
                                         liczbaObiektowPoprawnieSklasyfikowanych_klasa1++;
                                     }
                                     else if (wczytany_Testowy[i][indexDecyzji] == klasa0)
                                     {
                                         Console.Write(
-                                            " i nie jest zgodna z ukrytą decyzją eksperta(obiekt błędnie sklasyfikowany)");
+                                            " which is incorrect by TST expert data(object not classified correctly)");
 
                                         liczbaObiektowBlednieSklasyfikowanych_klasa1++;
                                         Console.WriteLine("\n Ta" + liczbaObiektowBlednieSklasyfikowanych_klasa1);
@@ -395,7 +395,7 @@ namespace BootstrapsNB
                                     var values = new[] { 0, 1 };
                                     int result = values[r.Next(values.Length)];
 
-                                    Console.Write("TEST NR: " + (g + 1) + " Obiekt x" + (i + 1) + " dostaje decyzję " +
+                                    Console.Write("TEST NR: " + (g + 1) + " Object x" + (i + 1) + " gets decision " +
                                                   result);
 
                                     string wynik = "";
@@ -427,7 +427,7 @@ namespace BootstrapsNB
                                     if (wczytany_Testowy[i][indexDecyzji] == wynik)
                                     {
                                         Console.Write(
-                                            " i jest zgodna z ukrytą decyzją eksperta(obiekt poprawnie sklasyfikowany)");
+                                            " which is correct by TST expert data(object correctly classified)");
 
                                         if (wynik == klasa0)
                                         {
@@ -441,7 +441,7 @@ namespace BootstrapsNB
                                     else
                                     {
                                         Console.Write(
-                                            " i nie jest zgodna z ukrytą decyzją eksperta(obiekt błędnie sklasyfikowany)");
+                                            " which is incorrect by TST expert data(object not classified correctly)");
 
                                         if (wynik == klasa0)
                                         {
@@ -689,7 +689,7 @@ namespace BootstrapsNB
 
                 using (StreamWriter writetofile = new StreamWriter($"average{p}%.txt"))
                 {
-                    writetofile.WriteLine("Średnia efektywność");
+                    writetofile.WriteLine("Average Effectiveness");
                     writetofile.WriteLine("Global Accuracy => " + String.Format("{0:0.00}", eff_global_acc / 50));
                     writetofile.WriteLine("Global Coverage => " + String.Format("{0:0.00}", eff_global_cov / 50));
                     writetofile.WriteLine($"TPR{klasa0} => " + String.Format("{0:0.00}", eff_tpr0 / 50));
@@ -697,7 +697,7 @@ namespace BootstrapsNB
                     writetofile.WriteLine("Youden index => " + String.Format("{0:0.00}", eff_youdenIndex / 50));
                 }
 
-                Console.WriteLine("\n\n\nŚrednia efektywność \n");
+                Console.WriteLine("\n\n\nAverage Effectiveness \n");
                 Console.WriteLine("Global Accuracy = " + String.Format("{0:0.00}", eff_global_acc / 50));
                 Console.WriteLine("Global Coverage = " + String.Format("{0:0.00}", eff_global_cov / 50));
                 Console.WriteLine("TPR0 = " + String.Format("{0:0.00}", eff_tpr0 / 50));
