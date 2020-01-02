@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Threading;
 
 namespace MonteCarlo
 {
@@ -46,7 +47,7 @@ namespace MonteCarlo
 
         static string[][] StringToTablica(string sciezkaDoPliku)
         {
-            string trescPliku = System.IO.File.ReadAllText(sciezkaDoPliku);
+            string trescPliku = File.ReadAllText(sciezkaDoPliku);
             string[] wiersze = trescPliku.Trim().Split(new char[] { '\n' });
             string[][] wczytaneDane = new string[wiersze.Length][];
 
@@ -66,6 +67,7 @@ namespace MonteCarlo
 
         static void Main(string[] args)
         {
+            // i.e.
             // australian.txt
             // diabetes.txt
             // hepatitis-filled.txt
@@ -74,8 +76,9 @@ namespace MonteCarlo
 
             string testowy = @"testowyPRE.txt";
 
-            // Warning:
-            // testowy needs to be TST dataset used in bootstrap program to operate on the same data!
+            // WARNING !!!
+            // testowy needs to be TST dataset used in bootstrap program to operate on 
+            // the same data in order to obtain comparable results
 
             string[][] wczytane_dane = StringToTablica(plik_dane);
 
@@ -100,6 +103,7 @@ namespace MonteCarlo
                 daneKlasyfikatora[i] = new string[50];
             }
 
+            // i.e.
             // australian = 14
             // diabetes = 8
             // hepatitis-filled = 19
@@ -107,6 +111,7 @@ namespace MonteCarlo
             int liczbaKolumn = 14;
             int indexDecyzji = 14;
 
+            // i.e.
             // australian klasa0 => 0, klasa1 => 1
             // diabetes klasa0 => 1, klasa1 => 0
             // hepatitis-filled klasa0 => 2, klasa1 = 1
@@ -142,6 +147,11 @@ namespace MonteCarlo
 
             for (int p = 10; p <= 100; p += 10) // 10 20 .. 100
             {
+                Console.WriteLine("----------------------------------------------");
+                Console.WriteLine($"{p}% TRN dataset test about to start...");
+                Console.WriteLine("----------------------------------------------");
+                Thread.Sleep(1500);
+
                 decimal liczbaTreningowych = (p / (decimal)100) * pozostalo;
 
                 string[][] wczytany_Treningowy = new string[(int)liczbaTreningowych][];
@@ -152,9 +162,9 @@ namespace MonteCarlo
                     {
                         for (int g = 0; g < 50; g++)
                         {
-                            // **********************************
-                            // setting TRN dataset..
-                            // **********************************
+                            // *************************************************
+                            // setting TRN dataset for current iteration..
+                            // *************************************************
                             int indexerTreningowego = 0;
 
                             List<int> juzWylosowane = new List<int>(); // przetrzymuje informacje o wylosowanych do TRN
@@ -320,14 +330,14 @@ namespace MonteCarlo
                                 if (double.IsNaN(wynik_param0) || double.IsNaN(wynik_param1))
                                 {
                                     // nie klasyfikujemy obiektu
-                                    Console.WriteLine("sad");
+                                    Console.WriteLine("sad :[");
                                     Console.ReadLine();
                                 }
 
                                 // porównujemy
                                 if (wynik_param0 > wynik_param1)
                                 {
-                                    Console.Write("TEST NR: " + (g + 1) + " Obiekt x" + (i + 1) + " dostaje decyzję 0");
+                                    Console.Write("TEST nr " + (g + 1) + " Object x" + (i + 1) + " gets decision 0");
 
                                     decyzjeKlasyfikatora.Add(0);
 
@@ -340,14 +350,14 @@ namespace MonteCarlo
                                     if (wczytany_Testowy[i][indexDecyzji] == klasa0)
                                     {
                                         Console.Write(
-                                            " i jest zgodna z ukrytą decyzją eksperta(obiekt poprawnie sklasyfikowany)");
+                                            " which is correct by TST expert data(object correctly classified)");
 
                                         liczbaObiektowPoprawnieSklasyfikowanych_klasa0++;
                                     }
                                     else if (wczytany_Testowy[i][indexDecyzji] == klasa1)
                                     {
                                         Console.Write(
-                                            " i nie jest zgodna z ukrytą decyzją eksperta(obiekt błędnie sklasyfikowany)");
+                                            " which is incorrect by TST expert data(object not classified correctly)");
 
                                         liczbaObiektowBlednieSklasyfikowanych_klasa0++;
                                         Console.WriteLine("\n Te" + liczbaObiektowBlednieSklasyfikowanych_klasa0);
@@ -357,7 +367,7 @@ namespace MonteCarlo
                                 }
                                 else if (wynik_param1 > wynik_param0)
                                 {
-                                    Console.Write("TEST NR: " + (g + 1) + " Obiekt x" + (i + 1) + " dostaje decyzję 1");
+                                    Console.Write("TEST nr " + (g + 1) + " Object x" + (i + 1) + " gets decision 1");
 
                                     decyzjeKlasyfikatora.Add(1);
 
@@ -370,14 +380,14 @@ namespace MonteCarlo
                                     if (wczytany_Testowy[i][indexDecyzji] == klasa1)
                                     {
                                         Console.Write(
-                                            " i jest zgodna z ukrytą decyzją eksperta(obiekt poprawnie sklasyfikowany)");
+                                            " which is correct by TST expert data(object correctly classified)");
 
                                         liczbaObiektowPoprawnieSklasyfikowanych_klasa1++;
                                     }
                                     else if (wczytany_Testowy[i][indexDecyzji] == klasa0)
                                     {
                                         Console.Write(
-                                            " i nie jest zgodna z ukrytą decyzją eksperta(obiekt błędnie sklasyfikowany)");
+                                            " which is incorrect by TST expert data(object not classified correctly)");
 
                                         liczbaObiektowBlednieSklasyfikowanych_klasa1++;
                                         Console.WriteLine("\n Ta" + liczbaObiektowBlednieSklasyfikowanych_klasa1);
@@ -392,7 +402,7 @@ namespace MonteCarlo
                                     var values = new[] { 0, 1 };
                                     int result = values[r.Next(values.Length)];
 
-                                    Console.Write("TEST NR: " + (g + 1) + " Obiekt x" + (i + 1) + " dostaje decyzję " +
+                                    Console.Write("TEST nr " + (g + 1) + " Object x" + (i + 1) + " gets decision " +
                                                   result);
 
                                     string wynik = "";
@@ -424,7 +434,7 @@ namespace MonteCarlo
                                     if (wczytany_Testowy[i][indexDecyzji] == wynik)
                                     {
                                         Console.Write(
-                                            " i jest zgodna z ukrytą decyzją eksperta(obiekt poprawnie sklasyfikowany)");
+                                            " which is correct by TST expert data(object correctly classified)");
 
                                         if (wynik == klasa0)
                                         {
@@ -438,7 +448,7 @@ namespace MonteCarlo
                                     else
                                     {
                                         Console.Write(
-                                            " i nie jest zgodna z ukrytą decyzją eksperta(obiekt błędnie sklasyfikowany)");
+                                            " which is incorrect by TST expert data(object not classified correctly)");
 
                                         if (wynik == klasa0)
                                         {
@@ -667,7 +677,7 @@ namespace MonteCarlo
 
                 using (StreamWriter writetofile = new StreamWriter($"average{p}%.txt"))
                 {
-                    writetofile.WriteLine("Średnia efektywność");
+                    writetofile.WriteLine("Average Effectiveness");
                     writetofile.WriteLine("Global Accuracy => " + String.Format("{0:0.00}", eff_global_acc / 50));
                     writetofile.WriteLine("Global Coverage => " + String.Format("{0:0.00}", eff_global_cov / 50));
                     writetofile.WriteLine($"TPR{klasa0} => " + String.Format("{0:0.00}", eff_tpr0 / 50));
@@ -675,7 +685,7 @@ namespace MonteCarlo
                     writetofile.WriteLine("Youden index => " + String.Format("{0:0.00}", eff_youdenIndex / 50));
                 }
 
-                Console.WriteLine("\n\n\nŚrednia efektywność \n");
+                Console.WriteLine("\n\n\nAverage Effectiveness \n");
                 Console.WriteLine("Global Accuracy = " + String.Format("{0:0.00}", eff_global_acc / 50));
                 Console.WriteLine("Global Coverage = " + String.Format("{0:0.00}", eff_global_cov / 50));
                 Console.WriteLine("TPR0 = " + String.Format("{0:0.00}", eff_tpr0 / 50));
@@ -689,6 +699,8 @@ namespace MonteCarlo
                 eff_tpr1 = 0;
                 eff_youdenIndex = 0;
             }
+
+            Console.WriteLine("Finished.. Output data is available at /bin/Debug dir.");
 
             Console.ReadKey();
         }
