@@ -1,2 +1,1 @@
-# naive-bayes-classifiers-work
-Test 1
+# Naive Bayes Classifiers experimental work
