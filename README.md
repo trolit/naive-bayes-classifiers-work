@@ -20,9 +20,17 @@ have presented how Naive Bayes classifier works in mentioned models on
 selected data from UCI repository.
 </p>
 
-## Repostiory
+## Repository
 Repository contains two datasets from UCI repository (australian, diabetes) as text files, output example with results visualization and software including program to perform monte carlo splits based test and bootstrap test.
 
+
+## Software
+
+#### Input
+
+#### Output
+
+1. Run Bootstraps application. 
 ## Authors
 - profesor UWM dr hab. Piotr Artiemjew, <a href="http://wmii.uwm.edu.pl/~artem/teaching.html">homepage</a>
 - Paweł Idzikowski
