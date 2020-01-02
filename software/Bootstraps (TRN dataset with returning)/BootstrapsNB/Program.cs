@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Runtime.InteropServices;
 
-namespace DaneZPlikuConsole
+namespace BootstrapsNB
 {
     class Program
     {
@@ -27,7 +26,7 @@ namespace DaneZPlikuConsole
         {
             double wynik; liczba = liczba.Trim();
             if (!double.TryParse(liczba.Replace(',', '.'), out wynik) && !double.TryParse(liczba.Replace('.', ','), out wynik))
-                throw new Exception("Nie udało się skonwertować liczby do double");
+                throw new Exception("Conversion form string to double failed.");
 
             return wynik;
         }
@@ -51,7 +50,7 @@ namespace DaneZPlikuConsole
                 for (int j = 0; j < cyfry.Length; j++)
                 {
                     string cyfra = cyfry[j].Trim(); // przypisuję j-tą cyfrę do zmiennej cyfra
-                    wczytaneDane[i][j] = cyfra; 
+                    wczytaneDane[i][j] = cyfra;
                 }
             }
             return wczytaneDane;
@@ -68,31 +67,30 @@ namespace DaneZPlikuConsole
 
             string[][] wczytane_dane = StringToTablica(plik_dane);
 
-            /****************** Solution *********************************/
+            /*******************************************************************************************/
 
-            Console.WriteLine("Podaj jaki % obiektów do systemu testowego rozlosować(bez zwracania)?");
+            Console.WriteLine("Specify percentage amount of objects that will be randomized as testing dataset (with returning)?");
             int procentObiektow = Convert.ToInt32(Console.ReadLine());
 
-            decimal liczbaTestowych = (procentObiektow / (decimal) 100) * wczytane_dane.Length;
+            decimal liczbaTestowych = (procentObiektow / (decimal)100) * wczytane_dane.Length;
 
             decimal pozostalo = wczytane_dane.Length - liczbaTestowych;
 
             string[][] wczytany_Testowy = new string[(int)liczbaTestowych][];
-            
+
             // stores infomation necessary to get classifiers comittee
             string[][] daneKlasyfikatora = new string[(int)liczbaTestowych][];
 
             for (int i = 0; i < daneKlasyfikatora.Length; i++)
             {
-                daneKlasyfikatora[i] = new string[50]; // 50 bcoz of 50 iterations :)
+                daneKlasyfikatora[i] = new string[50]; 
             }
-
 
             // australian = 14
             // diabetes = 8
             // hepatitis-filled = 19
             // heartdisease = 13
-            int liczbaKolumn = 14; 
+            int liczbaKolumn = 14;
             int indexDecyzji = 14;
 
             // australian klasa0 => 0, klasa1 => 1
@@ -161,7 +159,7 @@ namespace DaneZPlikuConsole
                 writeToFile.WriteLine(TablicaDoString(wczytany_Testowy));
             }
 
-            for (int p = 10; p <= 100; p+=10) // 10% , 20%, ... , 100%
+            for (int p = 10; p <= 100; p += 10) // 10% , 20%, ... , 100%
             {
                 decimal liczbaTreningowych = (p / (decimal)100) * pozostalo;
 
@@ -171,12 +169,8 @@ namespace DaneZPlikuConsole
                 {
                     using (StreamWriter writetofile_comitee = new StreamWriter($"komitet{p}%.txt"))
                     {
-                        // Bagging x50 iterations for each percantage amount of TRN system
                         for (int g = 0; g < 50; g++)
                         {
-                            // **********************************
-                            // Bootstrap
-                            // **********************************
                             int indexerTreningowego = 0;
 
                             // TRN system randomization
@@ -243,8 +237,8 @@ namespace DaneZPlikuConsole
                             List<double> param1 = new List<double>();
                             List<int> decyzjeKlasyfikatora = new List<int>();
 
-                            double P0 = liczbaObiektowKlasy0 / (double) liczbaObiektowTreningowych;
-                            double P1 = liczbaObiektowKlasy1 / (double) liczbaObiektowTreningowych;
+                            double P0 = liczbaObiektowKlasy0 / (double)liczbaObiektowTreningowych;
+                            double P1 = liczbaObiektowKlasy1 / (double)liczbaObiektowTreningowych;
 
                             int liczbaObiektowPoprawnieSklasyfikowanych = 0;
                             int liczbaObiektowSklasyfikowanych = 0;
@@ -398,7 +392,7 @@ namespace DaneZPlikuConsole
                                 {
                                     // otrzymuje losowa decyzje
                                     Random r = new Random();
-                                    var values = new[] {0, 1};
+                                    var values = new[] { 0, 1 };
                                     int result = values[r.Next(values.Length)];
 
                                     Console.Write("TEST NR: " + (g + 1) + " Obiekt x" + (i + 1) + " dostaje decyzję " +
@@ -575,13 +569,13 @@ namespace DaneZPlikuConsole
 
                             // Policz Global Accuracy
                             decimal global_acc = liczbaObiektowPoprawnieSklasyfikowanych /
-                                                 (decimal) liczbaObiektowSklasyfikowanych;
+                                                 (decimal)liczbaObiektowSklasyfikowanych;
 
                             decimal komitet_global = 0;
 
                             if (g > 1)
                             {
-                                komitet_global = poprawnieSklasyfikowane / (decimal) sklasyfikowane;
+                                komitet_global = poprawnieSklasyfikowane / (decimal)sklasyfikowane;
                             }
 
                             if (g > 1)
@@ -603,7 +597,7 @@ namespace DaneZPlikuConsole
                             {
                                 poprawnieSklasyfikowaneKlasa0 =
                                     liczbaObiektowPoprawnieSklasyfikowanych_klasa0 /
-                                    (decimal) liczbaObiektowSklasyfikowanych_klasa0;
+                                    (decimal)liczbaObiektowSklasyfikowanych_klasa0;
                             }
 
                             decimal poprawnieSklasyfikowaneKlasa1 = 0;
@@ -612,7 +606,7 @@ namespace DaneZPlikuConsole
                             {
                                 poprawnieSklasyfikowaneKlasa1 =
                                     liczbaObiektowPoprawnieSklasyfikowanych_klasa1 /
-                                    (decimal) liczbaObiektowSklasyfikowanych_klasa1;
+                                    (decimal)liczbaObiektowSklasyfikowanych_klasa1;
                             }
 
                             decimal balanced_acc = (poprawnieSklasyfikowaneKlasa0 + poprawnieSklasyfikowaneKlasa1) /
@@ -620,7 +614,7 @@ namespace DaneZPlikuConsole
 
                             eff_balanced_acc += balanced_acc;
 
-                            decimal globalCoverage = liczbaObiektowSklasyfikowanych / (decimal) wczytany_Testowy.Length;
+                            decimal globalCoverage = liczbaObiektowSklasyfikowanych / (decimal)wczytany_Testowy.Length;
 
                             eff_global_cov += globalCoverage;
 
@@ -638,7 +632,7 @@ namespace DaneZPlikuConsole
                             {
                                 TPR_klasy0 =
                                     liczbaObiektowPoprawnieSklasyfikowanych_klasa0 /
-                                    (decimal) (liczbaObiektowPoprawnieSklasyfikowanych_klasa0 +
+                                    (decimal)(liczbaObiektowPoprawnieSklasyfikowanych_klasa0 +
                                                liczbaObiektowBlednieSklasyfikowanych_klasa0);
                             }
 
@@ -647,7 +641,7 @@ namespace DaneZPlikuConsole
                             {
                                 TPR_klasy1 =
                                     liczbaObiektowPoprawnieSklasyfikowanych_klasa1 /
-                                    (decimal) (liczbaObiektowPoprawnieSklasyfikowanych_klasa1 +
+                                    (decimal)(liczbaObiektowPoprawnieSklasyfikowanych_klasa1 +
                                                liczbaObiektowBlednieSklasyfikowanych_klasa1);
                             }
 
@@ -663,14 +657,14 @@ namespace DaneZPlikuConsole
 
                             if (TP != 0 || FN != 0)
                             {
-                                Sensitivity = TP / (decimal) (TP + FN);
+                                Sensitivity = TP / (decimal)(TP + FN);
                             }
 
                             decimal Specificity = 0;
 
                             if (TN != 0 || FP != 0)
                             {
-                                Specificity = TN / (decimal) (TN + FP);
+                                Specificity = TN / (decimal)(TN + FP);
                             }
 
                             decimal youdenIndex = Sensitivity + Specificity - 1;
@@ -717,9 +711,8 @@ namespace DaneZPlikuConsole
                 eff_tpr1 = 0;
                 eff_youdenIndex = 0;
             }
-            // Console.WriteLine("Matthew Correlation Coefficient = " + eff_matthewCorelation / 5);
-
-            /****************** Koniec miejsca na rozwiązanie ********************************/
+ 
+            /*****************************************************************************************************/
             Console.ReadKey();
         }
     }
