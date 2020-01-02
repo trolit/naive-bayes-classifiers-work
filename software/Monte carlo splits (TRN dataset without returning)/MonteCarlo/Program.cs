@@ -84,7 +84,10 @@ namespace MonteCarlo
 
             /*******************************************************************************************/
 
-            Console.WriteLine("Specify percentage amount of objects that will be randomized as testing dataset (without returning)?");
+            Console.WriteLine("\n \n Specify percentage amount of objects that were randomized into TST dataset before Bootstrap test (e.g. 20, 25) \n \n " +
+                              "Please, keep also in mind that Monte Carlo splits based test requires to pass testing set that you received as\n" +
+                              " testowy.txt after running Bootstrap based test. It should be named as testowyPRE.txt to be correctly read by \n MonteCarlo program. \n \n " +
+                              "If you do not own copy of testowy.txt file, make sure to run Bootstrap based test first. \n \n ");
             int procentObiektow = Convert.ToInt32(Console.ReadLine());
 
             decimal liczbaTestowych = (procentObiektow / (decimal)100) * wczytane_dane.Length;
