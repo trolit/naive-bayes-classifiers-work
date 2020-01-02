@@ -1,0 +1,6 @@
+Średnia efektywność
+Global Accuracy => 0,83
+Global Coverage => 1,00
+TPR0 => 0,78
+TPR1 => 0,95
+Youden index => 0,73
