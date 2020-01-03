@@ -39,7 +39,7 @@ NN is percentage amount of objects that defines, how many objects were randomize
 
 X is an integer value from <1, 50> which responds for iteration number,
 
-committee is value showing global accuracy by following method: collect intel how object was classified during 50 iterations, the most appearing decision is a verdict (final classification for object, when even object is not classified), check picture below (keep in mind that this file can be produced as output if uncommented line with ```komitetTabela.txt``` text in console application) 
+committee is value showing global accuracy by following method: collect intel how object was classified during 50 iterations, the most appearing decision is a verdict (if even, object is not recognized as 'classified'), check picture below (keep in mind that this file can be produced as output if uncommented line with ```komitetTabela.txt``` text in console application) 
 
 <p align="center">
 <img src="https://github.com/trolit/naive-bayes-classifiers-work/blob/master/img/committee.PNG" alt="Committee image example" width="780px"></img>
