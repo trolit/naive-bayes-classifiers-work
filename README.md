@@ -34,8 +34,11 @@ Either BootstrapNB or MonteCarlo require to specify percentage of objects in tes
 #### Output
 
 Note that,
+
 NN is percentage amount of objects that defines, how many objects were randomized into TRN (training) dataset,
+
 X is an integer value from <1, 50> which responds for iteration number,
+
 committee is value showing global accuracy by following method: collect intel how object was classified during 50 iterations, the most appearing decision is a verdict (final classification for object), check picture below (keep in mind that this file can be produced as output if uncommented line with ```komitetTabela.txt``` text in console application) 
 
 <p align="center">
