@@ -31,7 +31,7 @@ If you want to run the software by your own, please, keep in mind
 Either BootstrapNB or MonteCarlo require to specify percentage of objects in testing set. That value is much more important in BootstrapNB as it produces TST set which is later used by MonteCarlo program. Nevertheless, both console applications should receive the same input data. 
 </p>
 
-#### Output
+### Output
 
 Note that,
 
