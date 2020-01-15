@@ -55,4 +55,4 @@ File named testowy is created only by BootstrapNB console app to be used in Mont
 
 ## Authors
 - profesor UWM dr hab. Piotr Artiemjew, <a href="http://wmii.uwm.edu.pl/~artem/teaching.html">homepage</a>
-- Paweł Idzikowski
+- Paweł Idzikowski, <a href="https://trolit.github.io/">homepage</a>
