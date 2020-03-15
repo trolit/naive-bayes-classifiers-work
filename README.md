@@ -8,7 +8,7 @@ Concurrency, Specification and Programming 2019, Olsztyn 2019, accepted
 
 ## Description
 <p align="justify">
-In the work we have implemented an ensemble of Naive Bayes classifiers using committee of bootstraps and monte carlo splits. We have conducted 50 iterations of learning in each tested model. Fixed percentage of random objects from the original training system was used. New training decision systems that were considered consisted of 10 to 100 percent of random objects from original training decision system. Two main variants were checked, first with objects returning after the drawn (bootstraps) - and without returning (as monte carlo splits). We have presented how Naive Bayes classifier works in mentioned models on selected data from UCI repository.
+In the work we have implemented an ensemble of Naive Bayes classifiers using committee of bootstraps and monte carlo splits. We have conducted 50 iterations of learning in each tested model. Fixed percentage of random objects from the original training system was used. New training decision systems that were considered consisted of 10 to 100 percent of random objects from original training decision system. Two main variants were checked, first with objects returning after the drawn (bootstraps) - and without returning (as monte carlo splits). We have presented how Naive Bayes classifier works in mentioned models on selected data from UCI repository. Publication is released on CEUR-WS.org and available to see <a href="http://ceur-ws.org/Vol-2571/CSP2019_paper_17.pdf">here</a>, as pdf document.
 </p>
 
 ## Repository info
