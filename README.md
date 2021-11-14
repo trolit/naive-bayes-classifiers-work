@@ -1,4 +1,21 @@
-# Naive Bayes Classifiers experimental work
+### Naive Bayes Classifiers experimental work
+
+<table class="ui celled striped tablet stackable table">
+  <tbody>
+    <tr>
+      <td>
+        <i class="lab icon"></i> tech
+      </td>
+      <td class="font-balooChettan2">.NET Framework</td>
+    </tr>
+    <tr>
+      <td>
+        <i class="clock icon"></i> timeframe
+      </td>
+      <td class="font-balooChettan2">19.05.2019 – 17.07.2019</td>
+    </tr>
+  </tbody>
+</table>
 
 ```
 Artiemjew, P, Idzikowski, P.: Building an Ensemble of Naive Bayes Classifiers using committee of bootstraps
